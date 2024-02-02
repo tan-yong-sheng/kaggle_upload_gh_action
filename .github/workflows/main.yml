@@ -16,7 +16,7 @@ jobs:
         run: |
           echo "print('hello world')" > script.py
 
-      - uses: harupy/push-kaggle-kernel@master
+      - uses: harupy/push-kaggle-kernel@main
         env:
           # Do not leak your credentials.
           KAGGLE_USERNAME: ${{ secrets.KAGGLE_USERNAME }}
