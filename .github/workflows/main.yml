@@ -28,6 +28,7 @@ jobs:
         env:
           KAGGLE_USERNAME: ${{ secrets.KAGGLE_USERNAME }}
           KAGGLE_KEY: ${{ secrets.KAGGLE_KEY }}
+          KERNEL_SLUG: ${{ env.KERNEL_SLUG }}
         with:
           id: ${{ secrets.KAGGLE_USERNAME }}/${{ env.KERNEL_SLUG }}
           title: ${{ env.KERNEL_SLUG }}
