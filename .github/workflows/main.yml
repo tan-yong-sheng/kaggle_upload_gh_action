@@ -3,7 +3,7 @@ name: Upload
 on:
   push:
     branches:
-      - main
+      - master
 
 jobs:
   upload:
@@ -16,7 +16,7 @@ jobs:
         run: |
           echo "print('hello world')" > script.py
 
-      - uses: harupy/push-kaggle-kernel@main
+      - uses: harupy/push-kaggle-kernel@master
         env:
           # Do not leak your credentials.
           KAGGLE_USERNAME: ${{ secrets.KAGGLE_USERNAME }}
