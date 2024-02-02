@@ -18,7 +18,7 @@ jobs:
         with:
           id: ${{ secrets.KAGGLE_USERNAME }}/${{ github.sha }}
           title: ${{ github.sha }}
-          code_file: ./script.py
+          code_file: /script.py
           language: python
           kernel_type: script
           # Do not share high-scoring kernels.
