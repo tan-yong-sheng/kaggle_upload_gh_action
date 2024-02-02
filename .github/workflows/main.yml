@@ -1,4 +1,4 @@
-name: Upload
+name: Upload to Kaggle
 
 on:
   push:
@@ -7,19 +7,31 @@ on:
 
 jobs:
   upload:
-    name: Upload
+    name: Upload to Kaggle
     runs-on: ubuntu-latest
+
     steps:
-      - uses: harupy/push-kaggle-kernel@master
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.8
+
+      - name: Install Dependencies
+        run: |
+          pip install kaggle
+
+      - name: Upload to Kaggle
+        uses: harupy/push-kaggle-kernel@master
         env:
-          # Do not leak your credentials.
           KAGGLE_USERNAME: ${{ secrets.KAGGLE_USERNAME }}
           KAGGLE_KEY: ${{ secrets.KAGGLE_KEY }}
         with:
           id: ${{ secrets.KAGGLE_USERNAME }}/${{ github.sha }}
           title: ${{ github.sha }}
-          code_file: script.py
+          code_file: script.py  # Update the path accordingly
           language: python
           kernel_type: script
-          # Do not share high-scoring kernels.
           is_private: false
