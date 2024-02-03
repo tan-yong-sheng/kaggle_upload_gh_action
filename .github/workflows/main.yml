@@ -11,6 +11,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Get directory
+        run: ls -a
+
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
@@ -19,9 +22,6 @@ jobs:
       - name: Install Dependencies
         run: |
           pip install kaggle
-
-      - name: Get directory
-        run: ls
 
       - name: Checkout Repository
         uses: actions/checkout@v2
