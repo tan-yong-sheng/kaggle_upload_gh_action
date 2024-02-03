@@ -1,41 +1,51 @@
-name: Upload to Kaggle
+name: upload github code to kaggle
+run-name: ${{ github.actor }} is uploading github code to kaggle
 
+# Controls when the action will run. Triggers the workflow on push or pull request
+# events but only for the master branch
 on:
   push:
-    branches:
-      - main
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
 
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
+  # This workflow contains a single job called "upload"
   upload:
-    name: Upload to Kaggle
+    # Only triggers if string "upload to kaggle" is found in the commit message
+    if: "contains(github.event.commits[0].message, 'upload to kaggle')"
+
+    # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
+    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v2
-
-      - name: Get directory
-        run: ls -a
-  
-      - name: Set up Python
-        uses: actions/setup-python@v2
-        with:
-          python-version: 3.8
-
-      - name: Install Dependencies
-        run: |
-          pip install kaggle
-
-      - name: Upload to Kaggle
-        uses: harupy/push-kaggle-kernel@master
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+      # Runs a single command using the runners shell
+      - name: Upload github code to kaggle
+        # uses: jaimevalero/push-kaggle-dataset@v3 # This is the action
+        uses: Nov05/action-push-kaggle-dataset@v1
         env:
+          # Do not leak your credentials.
           KAGGLE_USERNAME: ${{ secrets.KAGGLE_USERNAME }}
           KAGGLE_KEY: ${{ secrets.KAGGLE_KEY }}
           KERNEL_SLUG: ${{ env.KERNEL_SLUG }}
+
         with:
-          id: ${{ secrets.KAGGLE_USERNAME }}
-          title: ${{ env.KERNEL_SLUG }}
-          code_file: kaggle-upload-gh-action.ipynb  # Update the path accordingly
-          language: python
-          kernel_type: script
-          is_private: false
+          ## Default is "{KAGGLE_USERNAME}/{GITHUB_REPO_NAME}" Where KAGGLE_USERNAME is a secret
+          # id: ${{ secrets.KAGGLE_USERNAME }}/${{ env.KERNEL_SLUG }}
+          title: "Testing auto-uploads from Github"
+          subtitle: "Synced using Github Actions"
+          description: "## Testing auto-uploads from Github to Kaggle"
+          files: |
+            *.py
+            *.md
+            *.yml 
+            *.ipynb
+            trainers
+            .gitignore
+            .gitattributes
+            requirements.txt
+          is_public: true
