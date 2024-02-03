@@ -35,7 +35,7 @@ jobs:
         with:
           id: ${{ secrets.KAGGLE_USERNAME }}
           title: ${{ env.KERNEL_SLUG }}
-          code_file: /script.py  # Update the path accordingly
+          code_file: /src/script.py  # Update the path accordingly
           language: python
           kernel_type: script
           is_private: false
