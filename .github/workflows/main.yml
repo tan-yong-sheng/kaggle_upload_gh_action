@@ -22,9 +22,9 @@ jobs:
           KAGGLE_USERNAME: ${{ secrets.KAGGLE_USERNAME }}
           KAGGLE_KEY: ${{ secrets.KAGGLE_KEY }}
         with:
-          id: ${{ secrets.KAGGLE_USERNAME }}/kaggle_upload_gh_action
-          title: ${{ env.KERNEL_SLUG }}
-          code_file: kaggle-upload-gh-action.ipynb
+          kernel_id: ${{ secrets.KAGGLE_USERNAME }}/${{ github.sha }}
+          title: ${{ github.sha }}
+          code_file: ./kaggle-upload-gh-action.ipynb
           language: python
           kernel_type: script
           # Do not share high-scoring kernels.
