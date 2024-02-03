@@ -1,0 +1,17 @@
+{
+  "id": "tanyongsheng/kaggle-upload-gh-action",
+  "id_no": 50376545,
+  "title": "kaggle_upload_gh_action",
+  "code_file": "kaggle-upload-gh-action.ipynb",
+  "language": "python",
+  "kernel_type": "notebook",
+  "is_private": true,
+  "enable_gpu": false,
+  "enable_tpu": false,
+  "enable_internet": true,
+  "keywords": [],
+  "dataset_sources": [],
+  "kernel_sources": [],
+  "competition_sources": [],
+  "model_sources": []
+}
