@@ -50,4 +50,5 @@ jobs:
             .gitignore
             .gitattributes
             requirements.txt
+          code_file: kaggle-upload-gh-action.ipynb
           is_public: true
