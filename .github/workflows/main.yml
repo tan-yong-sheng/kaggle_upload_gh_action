@@ -20,6 +20,9 @@ jobs:
         run: |
           pip install kaggle
 
+      - name: Get directory
+        run: ls
+
       - name: Checkout Repository
         uses: actions/checkout@v2
 
