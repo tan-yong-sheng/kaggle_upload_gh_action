@@ -5,9 +5,11 @@ run-name: ${{ github.actor }} is uploading github code to kaggle
 # events but only for the master branch
 on:
   push:
-    branches: [ main ]
+    branches: 
+      main
   pull_request:
-    branches: [ main ]
+    branches: 
+      main
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
