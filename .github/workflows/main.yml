@@ -21,9 +21,8 @@ jobs:
           # Do not leak your credentials.
           KAGGLE_USERNAME: ${{ secrets.KAGGLE_USERNAME }}
           KAGGLE_KEY: ${{ secrets.KAGGLE_KEY }}
-          KERNEL_SLUG: ${{ env.KERNEL_SLUG }}
         with:
-          id: ${{ secrets.KAGGLE_USERNAME }}/${{ env.KERNEL_SLUG }}
+          id: ${{ secrets.KAGGLE_USERNAME }}/kaggle_upload_gh_action
           title: ${{ env.KERNEL_SLUG }}
           code_file: kaggle-upload-gh-action.ipynb
           language: python
