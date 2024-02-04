@@ -29,9 +29,9 @@ jobs:
           pip install kaggle
      
       - name: Upload Notebook to Kaggle
-          env:
-              KAGGLE_USERNAME: ${{ secrets.KAGGLE_USERNAME }}
-              KAGGLE_KEY: ${{ secrets.KAGGLE_KEY }}
-            run: |
-              kaggle kernels push -p kaggle-upload-gh-action.ipynb
+        env:
+          KAGGLE_USERNAME: ${{ secrets.KAGGLE_USERNAME }}
+          KAGGLE_KEY: ${{ secrets.KAGGLE_KEY }}
+        run: |
+          kaggle kernels push -p kaggle-upload-gh-action.ipynb
 
