@@ -9,12 +9,14 @@ jobs:
   upload:
     name: Upload
     runs-on: ubuntu-latest
+
+    # Assigning permissions to jobs  # https://docs.github.com/en/actions/using-jobs/assigning-permissions-to-jobs
+    # Modify the default permissions granted to GITHUB_TOKEN.
+    permissions: write-all
+
+
     steps:
       - uses: actions/checkout@v2
-
-      - name: Create a toy python script
-        run: |
-          echo "print('hello world')" > script.py
 
       - uses: harupy/push-kaggle-kernel@master
         env:
@@ -22,7 +24,7 @@ jobs:
           KAGGLE_USERNAME: ${{ secrets.KAGGLE_USERNAME }}
           KAGGLE_KEY: ${{ secrets.KAGGLE_KEY }}
         with:
-          kernel_id: ${{ secrets.KAGGLE_USERNAME }}/${{ github.sha }}
+          id: ${{ secrets.KAGGLE_USERNAME }}/${{ github.sha }}
           title: ${{ github.sha }}
           code_file: ./kaggle-upload-gh-action.ipynb
           language: python
